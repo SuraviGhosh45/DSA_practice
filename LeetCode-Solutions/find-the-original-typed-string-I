@@ -15,11 +15,14 @@ The possible original strings are:
 So, the answer is 5.
 
 
-Approach:
-1.taking a variable count with a value of 1(because every alphabet in the word string ocuur atleast 1 time)
-2.iterate in the string and check if the variable is reapeatedly occur or not
-3. if yes count increased by 1
-4.return count
+Solution:
+1.Take a variable count with a value of 1 (because every alphabet in the word string occurs at least once).
+2.Iterate through the string and check if the character occurs repeatedly or not.
+3. If yes, increase count by 1.
+4.return count.
+
+Time Complexity: O(n)
+Space Complexity: O(1)
 
 Code
 class Solution(object):
