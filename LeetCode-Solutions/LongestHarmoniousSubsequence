@@ -15,7 +15,10 @@ Output: 5
 Explanation:
 The longest harmonious subsequence is [3,2,2,2,3]
 
-code:
+Time Complexity = O(n) + O(n) = O(2n) → O(n)(drop constants in Big-O, so it's just O(n))
+Space Complexity = O(n)
+
+Code:
 class Solution(object):
     def findLHS(self, nums):
         table={}
