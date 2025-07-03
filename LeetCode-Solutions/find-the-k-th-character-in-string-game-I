@@ -13,7 +13,33 @@ Generated string is "bccd", word becomes "abbcbccd".
 
 Solution:
 to solve this we use recursion here,
-1.for fixing the base case that is if k==1 return 'a'.
-2.then initialize leng =1 to check whether the 
-3.
-4.
+1.First, we define a base case in a function (let’s call it helper). If k == 1, we return 'a'.
+2.Then, we initialize length = 1 to find the size of the previous word chunk that helps determine the correct position. 
+(We do this because we don’t need to generate the entire string.)
+3.Next, we check whether k <= length. If it is, we recursively call the helper function with k.
+4.If not, we calculate k - length and use this to find the corresponding character from the first half,
+then return its shifted version (the next character in the alphabet).
+
+Time Complexity: O(log k)
+Space Complexity: O(log k)
+
+Code:
+class Solution:
+    @staticmethod
+    def helper(k):
+        if k == 1:
+            return 'a'
+
+        leng = 1
+        while leng * 2 < k:
+            leng *= 2
+
+        if k <= leng:
+            return Solution.helper(k)
+        else:
+            prev = Solution.helper(k - leng)
+            return chr((ord(prev) - ord('a') + 1) % 26 + ord('a'))
+
+    @staticmethod
+    def kthCharacter(k):
+        return Solution.helper(k)
