@@ -1,0 +1,19 @@
+Problem Link --> https://leetcode.com/problems/find-the-k-th-character-in-string-game-i/description/?envType=daily-question&envId=2025-07-03
+
+Example 1:
+
+Input: k = 5
+Output: "b"
+
+Explanation:
+Initially, word = "a". We need to do the operation three times:
+Generated string is "b", word becomes "ab".
+Generated string is "bc", word becomes "abbc".
+Generated string is "bccd", word becomes "abbcbccd".
+
+Solution:
+to solve this we use recursion here,
+1.for fixing the base case that is if k==1 return 'a'.
+2.then initialize leng =1 to check whether the 
+3.
+4.
