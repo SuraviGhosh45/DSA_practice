@@ -1,1 +1,33 @@
+Problem Link --> https://leetcode.com/problems/find-lucky-integer-in-an-array/?envType=daily-question&envId=2025-07-05
 
+Example:
+Input: arr = [1,2,2,3,3,3]
+Output: 3
+
+Explanation: 
+here 1 occur for 1 time , 2 occur for 2 times and 3 for 3 times.
+Hence 1, 2 and 3 are all lucky numbers, return the largest of them.
+
+Solution:
+1.Initialize a frequency table using a dictionary to count occurrences of each number in the array.
+2.Iterate through the array and update the count for each number.
+3.Check for lucky integers by iterating over the frequency table:
+A number is lucky if its value equals its frequency.
+4.Track the maximum lucky integer found so far using a variable (lucky), initialized to -1.
+5.Return the result,If no lucky integer is found, return -1.
+
+Time Complexity:O(n)
+Space Complexity:O(n)
+
+Code:
+class Solution(object):
+    def findLucky(self, arr):
+        table={}
+        lucky=-1
+        for i in arr:
+            table[i]=table.get(i,0)+1
+        
+        for i in table:
+            if i==table[i]:
+                lucky=max(lucky,table[i])
+        return lucky
