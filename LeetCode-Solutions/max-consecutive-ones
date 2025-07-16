@@ -1,0 +1,31 @@
+Problem Link --> https://leetcode.com/problems/max-consecutive-ones/description/
+
+Example :
+Input: nums = [1,1,0,1,1,1]
+Output: 3
+
+Explanation: 
+The first two digits or the last three digits are consecutive 1s. 
+The maximum number of consecutive 1s is 3.
+
+Solution:
+1.Initialize two counters: count for current consecutive 1s and max_count for the maximum found.
+2.Iterate through the array:
+ -If the current element is 1, increment count and update max_count.
+ -If it's 0, reset count to 0.
+3.After the loop, return max_count.
+
+Time Complexity: O(n) 
+Space Complexity: O(1)
+
+Code:
+class Solution(object):
+    def findMaxConsecutiveOnes(self, nums):
+        max_count=count=0
+        for i in range(len(nums)):
+            if nums[i]==1:
+                count+=1
+                max_count=max(max_count,count)
+            else:
+                count=0
+        return max_count
