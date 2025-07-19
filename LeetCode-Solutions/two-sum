@@ -1,0 +1,31 @@
+Problem Link --> https://leetcode.com/problems/two-sum/submissions/1703907766/
+
+Example:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+
+Explanation: 
+Because nums[0] + nums[1] == 9, we return [0, 1].
+
+Solution:
+This solution uses a single-pass hash table to achieve linear time complexity.
+1.Iterate through the list of numbers once.
+2.For each element nums[i], calculate the complement:
+complement = target - nums[i]
+3.Check if the complement already exists in the hash table:
+ -If it does, return the indices [current index, index of complement].
+ -If not, store the current number with its index in the hash table.
+
+Time Complexity:O(n)
+Space Complexity:O(n)
+
+Code:
+class Solution(object):
+    def twoSum(self,nums, target):
+        
+        table={}
+        for i in range(len(nums)):
+            ans=target-nums[i]
+            if ans in table:
+                return [i,table[ans]]
+            table[nums[i]]=i
