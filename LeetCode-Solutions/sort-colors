@@ -1,0 +1,42 @@
+Problem Link: https://leetcode.com/problems/sort-colors/
+
+Example:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+Explanation:
+sort all the 0's, 1's, and 2's by putting them in their correct places.
+0's go to the left of the array, 1's go to the middle, and 2's go to the right of the array.
+
+Solution:
+Approach: Dutch National Flag Algorithm (One-pass, In-place)
+1.Initialize Pointers:
+ -low = 0 → boundary for 0s
+ -mid = 0 → current element being checked
+ -high = len(nums) - 1 → boundary for 2s
+2.Process While mid <= high:
+ -If nums[mid] == 0 then Swap with nums[low], increment both low and mid.
+ -If nums[mid] == 2 then Swap with nums[high], decrement high only (don’t move mid).
+ -If nums[mid] == 1 then Just increment mid.
+
+Time Complexity:O(N)
+Space Complexity:o(1)
+
+Code:
+class Solution(object):
+    def sortColors(self, nums):
+       
+       mid=low=0
+       high=len(nums)-1
+
+       while mid<=high:
+        if nums[mid]==0:
+            nums[low],nums[mid]=nums[mid],nums[low]
+            mid+=1
+            low+=1
+        elif nums[mid]==2:
+            nums[high],nums[mid]=nums[mid],nums[high]
+            high-=1
+        else:
+            mid+=1
+        
