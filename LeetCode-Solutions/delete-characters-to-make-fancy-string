@@ -1,0 +1,42 @@
+Problem Link --> https://leetcode.com/problems/delete-characters-to-make-fancy-string/?envType=daily-question&envId=2025-07-21
+
+Example:
+Input: s = "aaabaaaa"
+Output: "aabaa"
+
+Explanation:
+Remove an 'a' from the first group of 'a's to create "aabaaaa".
+Remove two 'a's from the second group of 'a's to create "aabaa".
+No three consecutive characters are equal, so return "aabaa".
+
+Solution:
+Approach: Greedy + One-Pass Iteration
+1.Initialize variables:
+ -prev to track the previous character.
+ -count to track how many times prev has appeared consecutively.
+ -ans to build the resulting string.
+2.Loop through the string from the second character:
+ -If the current character is same as prev, increment count.
+ -If it's different, reset prev and count.
+ -Only append to ans if count < 3.
+3.Return the final string.
+
+Time Complexity:O(N)
+Space Complexity:O(1)
+
+Code:
+class Solution(object):
+    def makeFancyString(self, s):
+        prev=s[0]
+        count=1
+        ans=prev
+        for i in range(1,len(s)):
+            if s[i]==prev:
+                count+=1
+            else:
+                prev=s[i]
+                count=1
+            if count<3:
+                ans=ans+s[i]
+        return ans
+
