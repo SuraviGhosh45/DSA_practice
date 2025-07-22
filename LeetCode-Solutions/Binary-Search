@@ -1,0 +1,38 @@
+Problem Link --> https://leetcode.com/problems/binary-search/
+
+Example:
+Input: nums = [-1,0,3,5,9,12], target = 9
+Output: 4
+
+Explanation: 9 exists in nums and its index is 4
+
+Solution:
+Binary search is a classic algorithm that repeatedly divides the search interval in half and 
+used to efficiently search for an element in a sorted array. 
+
+1.Initialize Pointers:
+ -low points to the beginning of the array (0) and high points to the end of the array (len(nums) - 1).
+2.Loop While Search Space is Valid:
+ -Calculate the mid index by adding low and high then devide it by 2.
+ -If nums[mid] == target, return mid (target found).
+ -If target < nums[mid], search the left half by updating high = mid - 1.
+ -If target > nums[mid], search the right half by updating low = mid + 1.
+ -If the loop ends and the element is not found, return -1.
+
+Time Complexity:O(log n)
+Space Complexity:O(1)
+
+Code:
+class Solution(object):
+    def search(self, nums, target):
+        low=0
+        high=len(nums)-1
+        while low<=high:
+            mid=(low+high)//2
+            if nums[mid]==target:
+                return mid
+            elif nums[mid]>target:
+                high=mid-1
+            else:
+                low=mid+1
+        return -1
