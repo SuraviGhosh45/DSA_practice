@@ -1,0 +1,44 @@
+Problem Link --> https://www.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1
+
+Example:
+Input: arr[] = [1, 2, 8, 10, 10, 12, 19], x = 5
+Output: 1
+
+Explanation:
+Largest number less than or equal to 5 is 2, whose index is 1.
+
+Solution:
+Find the largest index i such that arr[i] <= x.
+
+1.Initialize left = 0, right = len(arr) - 1, and floor = -1.
+2.While left <= right:
+ -Compute mid = (left + right) // 2
+ -If arr[mid] <= x:
+    -Update floor = mid (possible candidate)
+    -Search the right half for a better (larger) candidate → left = mid + 1
+ -Else:
+    -Search the left half → right = mid - 1
+3.Return the index stored in floor.
+
+Time Complexity:O(log n)
+Space Complexity:O(1)
+
+Code:
+class Solution:
+    def findFloor(self, arr, x):
+        left=0
+        right=len(arr)-1
+        floor=-1
+        
+        while left<=right:
+            mid=(left+right)//2
+            
+            if arr[mid]<=x:
+                floor=mid
+                left=mid+1
+            elif arr[mid]>x:
+                right=mid-1
+                
+        return floor
+            
+        
