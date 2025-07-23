@@ -1,0 +1,55 @@
+Problem Link--> https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+
+Example:
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+
+Expanation:
+we need to find here what the indices are where 8 occur first time and last time. 
+Here, the first time 8 occurs is in index 3, and the last occurrence of 8 is 4.
+
+Solution:
+This solution uses binary search twice to efficiently find the first and last occurrence of the target in the sorted array.
+
+1️.First Binary Search (Left Boundary) for Find the first (leftmost) occurrence of target.
+ -If nums[mid] == target, store index in ind1 and move right to mid - 1 to search for earlier occurrence.
+2️.Second Binary Search (Right Boundary) for Find the last (rightmost) occurrence of target.
+ -If nums[mid] == target, store index in ind2 and move left to mid + 1 to search for later occurrence.
+
+Time Complexity:O(log n)+O(log n) = O(2 log n) = O(log n). 
+here, 2 is eliminated because it is a constant value, 
+and constant values are not important in Big O notation.
+Space Complexity:O(1)
+
+Code:
+class Solution(object):
+    def searchRange(self, nums, target):
+        ind1=-1
+        ind2=-1
+        left=0
+        right=len(nums)-1
+
+        while left<=right:
+            mid=(left+right)//2
+            if nums[mid]==target:
+                ind1=mid
+                right=mid-1
+            elif nums[mid]>target:
+                right=mid-1
+            else:
+                left=mid+1
+                
+        left=0
+        right=len(nums)-1
+
+        while left<=right:
+            mid=(left+right)//2
+            if nums[mid]==target:
+                ind2=mid
+                left=mid+1
+            elif nums[mid]>target:
+                right=mid-1
+            else:
+                left=mid+1
+
+        return [ind1,ind2]
