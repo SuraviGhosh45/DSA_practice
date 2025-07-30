@@ -1,0 +1,51 @@
+problem Link --> https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+Example:
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+
+Explanation:
+In this given rotated sorted array , find the index of the target using  Modified binary search. If not found, return -1.
+
+Solution:
+1. Initialize Pointers by Set low = 0 and high = len(nums) - 1
+2.Initialize ans = -1 to store the index if the target is found
+3.Binary Search Loop (while low <= high)
+  -Calculate mid = (low + high) // 2
+  -If nums[mid] == target, store mid in ans (or return mid directly for optimization)
+  -Determine Which Half is Sorted
+    -Left Half Sorted by checking If nums[mid] >= nums[low]:
+      -if target lies in the range [nums[low], nums[mid]) : If yes move high = mid - 1 , otherwise move low = mid + 1
+    -Right Half Sorted by checking nums[mid] < nums[high]
+      -if target lies in the range [nums[mid], nums[high]]:If yes move low = mid + 1 , otherwise move high = mid - 1
+4. Return ans as the final answer,If the target is not found, ans remains -1
+
+Time Complexity:O(log N)
+Space Complexity:O(1)
+
+Code:
+class Solution(object):
+    def search(self, nums, target):
+        
+        low=0
+        high=len(nums)-1
+        ans=-1
+
+        while low<=high:
+            mid = (low+high)//2
+            if nums[mid] == target:
+                ans=mid
+            if nums[mid]>=nums[low]:
+                if nums[low]<=target<nums[mid]:
+                    high=mid-1
+                else:
+                    low=mid+1
+            elif nums[mid]<nums[high]:
+                if nums[mid]<=target<=nums[high]:
+                    low=mid+1
+                else:
+                    high=mid-1
+        return ans 
+
+        
+
