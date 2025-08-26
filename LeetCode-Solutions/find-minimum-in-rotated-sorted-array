@@ -1,0 +1,55 @@
+Problem Link --> https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
+
+Example:
+Input: nums = [3,4,5,1,2]
+Output: 1
+Explanation: 
+The original array was [1,2,3,4,5] rotated 3 times.
+
+Solution:
+Two binary searches are performed: one on the first half of the array, and another on the second half and
+Two variables t0 and t1 store the minimum found in each half.
+ 
+1. First Binary Search (Left Half)
+   - Start with low = 0 and high = (len(nums)) // 2.
+     - While searching:
+       - Calculate mid = (low + high) // 2.
+         - If nums[mid] <= nums[high], update t0 = min(t0, nums[mid]) and move high leftward. Else, move low rightward.
+
+2. Second Binary Search (Right Half)
+   - Reset pointers: low = high + 1 and high = len(nums) - 1.
+    - Perform the same binary search logic, updating t1.
+
+3.The minimum element is the smaller of the two found values: min(t0, t1).
+
+Time Complexity: O(log n)
+Space Complexity: O(1)
+
+
+
+Code:
+class Solution(object):
+    def findMin(self, nums):
+        low=0
+        high=(low+len(nums))//2
+        t0=100
+
+        while low<=high:
+            mid=(low+high)//2
+            if nums[mid]<=nums[high]:
+                t0=min(t0,nums[mid])
+                high=mid-1
+            else:
+                low=mid+1
+        low=high+1
+        high=len(nums)-1
+        t1=100
+        while low<=high:
+            mid=(low+high)//2
+            if nums[mid]<=nums[high]:
+                t1=min(t1,nums[mid])
+                high=mid-1
+            else:
+                low=mid+1
+        return min(t0,t1)
+            
