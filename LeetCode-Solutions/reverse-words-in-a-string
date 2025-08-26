@@ -1,0 +1,31 @@
+Problem Link --> https://leetcode.com/problems/reverse-words-in-a-string/
+
+Example:
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+Explanation : reverse each word in a string 
+
+Solution:
+ 1. Splitting the String and store in lst 
+    - This splits the string s into words by using split(), ignoring extra spaces.
+    - Example: " hello world " → ["hello", "world"].
+2. Reversing the Word Order
+  - Iterate from the last word to the first using a reverse loop:
+     - After appending each word, add a space " " if it’s not the first word.
+3. Joining the Result by "".join(reverse)  to concatenates words and spaces into the final reversed string.
+
+Time Complexity: O(n) (splitting + traversing + joining).
+Space Complexity: O(n) (to store the reversed words).
+
+Code:
+class Solution(object):
+    def reverseWords(self, s):
+       
+        lst= s.split()
+        reverse=[]
+        for i in range(len(lst)-1,-1,-1):
+            reverse.append(lst[i])
+            if i !=0:
+                reverse.append(" ")
+        return "".join(reverse)
+        
