@@ -1,0 +1,28 @@
+Problem Link --> 
+
+Example:
+Input: num = "52"
+Output: "5"
+
+Explanation: 
+
+The only non-empty substrings are "5", "2", and "52". "5" is the only odd number.
+
+Solution:
+
+1.We only need to find the rightmost odd digit like  "2" 
+2.check if odd digit exists, 
+  - if found found, return the substring from the beginning till that digit .
+  - else return an empty string. 
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+Code:
+class Solution(object):
+    def largestOddNumber(self, num):
+        for i in range(len(num)-1,-1,-1):
+            if int(num[i])%2!=0:
+                return num[:i+1]
+        return ""
+            
